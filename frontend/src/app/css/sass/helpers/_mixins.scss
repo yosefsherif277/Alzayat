@@ -1,0 +1,11 @@
+@mixin centering-flexbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin w-h-bg-color($w:"", $h:"", $bg:"", $color:""){
+    width: $w;
+    height: $h;
+    background: $bg;
+    color: $color;
+}

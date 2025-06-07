@@ -1,0 +1,206 @@
+.header-container {
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    #lang {
+        @include w-h-bg-color(40px, 40px, #ccc);
+        @include centering-flexbox;
+        border-radius: 50%;
+        margin: 5px;
+        transition: 0.5s;
+        &:hover {
+            transform: scale(1.3);
+        }
+    }
+
+    /* Header start */
+    /* Nav bar start */
+    header {
+        .navbar {
+            border-bottom: 1px solid #ccc;
+            position: fixed;
+            @include w-h-bg-color(100%, $bg: #fff);
+            z-index: 10;
+            nav {
+                @media (max-width: 720px) {
+                    direction: ltr;
+                }
+                direction: var(--dir);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1100px;
+                max-height: 80px;
+                margin: auto;
+                padding: 1.5rem 2rem;
+                .logo-box {
+                    @include w-h-bg-color(110px, 70px);
+                    margin: 0 10px 0 0;
+                    border-radius: 50%;
+                    border: 3px solid white;
+                    overflow: hidden;
+                    flex-shrink: 0;
+                    .logo-img {
+                        @include w-h-bg-color(100%, 100%);
+                    }
+                }
+                ul {
+                    @media (max-width: 720px) { display: none; }
+                    display: inline-flex;
+                    align-items: center;
+                    direction: var(--dir);
+                    li a {
+                        margin: 0 15px;
+                        color: $primary-color;
+                        font-weight: 600;
+                        padding: 5px 0;
+                        &:hover {
+                            border-bottom: 3px $secondary solid;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /* Nav bar end */
+    /* Header end */
+    
+    // Burger start
+    .burger {
+        direction: ltr;
+        &:has(.closed) {
+            right: -300px;
+            $IsOpen: false;
+        }
+        &:has(.open) {
+            right: 0;
+            $IsOpen: true;
+        }
+        transition: .3s;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 999;
+        @media (max-width: 500px) {
+            &:has(.closed) {
+                right: -300px;
+                $IsOpen: false;
+                button {
+                    left: 0;
+                }
+            }
+            &:has(.open) {
+                right: -180px !important;
+                $IsOpen: true;
+            }
+            top: 0px;
+            .burger-nav ul li a img {
+                margin: 5px 30px 5px 0 !important;
+            }
+        }
+        @include w-h-bg-color(300px, 100dvh, white);
+        display: none;
+        @media (max-width: 720px) {
+            &:not(.burger-nav) {
+                display: block;
+            }
+        }
+        button {
+            @include w-h-bg-color(70px, 42px, white);
+            border: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translate(-65px, 20px);
+            z-index: 1000;
+            @media (max-width: 500px) {
+                left: 107px;
+            }
+            &.checked {
+                span {
+                    &:nth-of-type(1) {
+                        transform: rotate(45deg);
+                        top: 0px;
+                        left: 3px;
+                    }
+                    &:nth-of-type(2) {
+                        width: 0%;
+                        opacity: 0;
+                    }
+                    &:nth-of-type(3) {
+                        transform: rotate(-50deg);
+                        top: 36px;
+                        left: 5px;
+                    }
+                }
+            }
+            span {
+                position: absolute;
+                box-shadow: 5px 5px 5px #ccc;
+                @include w-h-bg-color(50px, 4px, black);
+                border-radius: 9px;
+                opacity: 1;
+                left: 0;
+                transform: rotate(0deg);
+                transition: .25s ease-in-out;
+                &:nth-of-type(1) {
+                    top: 0px;
+                    transform-origin: left center;
+                }
+                &:nth-of-type(2) {
+                    top: 50%;
+                    transform: translateY(-50%);
+                    transform-origin: left center;
+                }
+                &:nth-of-type(3) {
+                    top: 100%;
+                    transform-origin: left center;
+                    transform: translateY(-100%);
+                }
+            }
+        }
+        .burger-nav {
+            @include w-h-bg-color(100%, calc(100dvh - 80px), white);
+            @media (max-width: 500px) {
+                top: 50px;
+            }
+            position: absolute;
+            transition: .5s;
+            display: block;
+            padding: 30px;
+            ul {
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                #lang {
+                    margin: 20px;
+                    transform: scale(1.3);
+                    &:hover {
+                        transform: scale(1);
+                    }
+                }
+                li {
+                    width: 100%;
+                    a {
+                        display: flex;
+                        align-items: center;
+                        margin-top: 10px;
+                        padding: 10px;
+                        width: 100%;
+                        color: $primary-color;
+                        border-radius: 10px;
+                        img {
+                            @include w-h-bg-color(50px, 50px);
+                            margin: 5px 30px 5px 5px;
+                            filter: invert(21%) sepia(16%) saturate(4515%) hue-rotate(198deg) brightness(89%) contrast(86%);
+                        }
+                        &:hover {
+                            background-color: rgba(black, 0.05);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // Burger end
+}

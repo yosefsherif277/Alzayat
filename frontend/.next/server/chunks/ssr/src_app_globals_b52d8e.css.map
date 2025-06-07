@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/src/app/globals.css"],"sourcesContent":["/* Import fonts */\n@import url(\"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Saira:wght@700&display=swap\");\n@import url(\"https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap\");\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: var(--font-family);\n  position: relative;\n  overflow-x: hidden;\n  direction: var(--dir);\n  text-align: var(--text-align);\n}\n\nh1, h2 {\n  font-family: \"Saira\", var(--font-family);\n}\n\nul {\n  list-style: none;\n}\n\na {\n  text-decoration: none;\n}\n\n.container {\n  padding: 0 2rem;\n  margin: auto;\n}\n\n.text-primary {\n  color: #20c997;\n}\n\n.error {\n  color: red;\n  margin-bottom: 1rem;\n  text-align: center;\n}/*# sourceMappingURL=globals.css.map */"],"names":[],"mappings":"AAGA;;;;;;AAMA;;;;;;;;AAQA;;;;AAIA;;;;AAIA;;;;AAIA;;;;;AAKA;;;;AAIA"}},
+    {"offset": {"line": 41, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

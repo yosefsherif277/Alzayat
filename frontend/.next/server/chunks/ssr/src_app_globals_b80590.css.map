@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/Computec/Downloads/%D9%85%D9%88%D8%A7%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D9%8A%D8%A9/%D9%85%D8%B4%D8%A7%D8%B1%D9%8A%D8%B9%20%D9%83%D8%A8%D9%8A%D8%B1%D8%A9/Alzayat/frontend/src/app/globals.css"],"sourcesContent":["/* Import fonts */\n@import url(\"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Saira:wght@700&display=swap\");\n@import url(\"https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap\");\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: var(--font-family);\n  position: relative;\n  overflow-x: hidden;\n  direction: var(--dir);\n  text-align: var(--text-align);\n}\n\nh1, h2 {\n  font-family: \"Saira\", var(--font-family);\n}\n\nul {\n  list-style: none;\n}\n\na {\n  text-decoration: none;\n}\n\n.container {\n  padding: 0 2rem;\n  margin: auto;\n}\n\n.text-primary {\n  color: #20c997;\n}\n\n.error {\n  color: red;\n  margin-bottom: 1rem;\n  text-align: center;\n}/*# sourceMappingURL=globals.css.map */"],"names":[],"mappings":"AAGA;;;;;;AAMA;;;;;;;;AAQA;;;;AAIA;;;;AAIA;;;;AAIA;;;;;AAKA;;;;AAIA"}},
+    {"offset": {"line": 43, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

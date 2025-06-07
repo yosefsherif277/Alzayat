@@ -1,0 +1,48 @@
+footer {
+    // quick start
+    #quick {
+        @include w-h-bg-color(100%, fit-content, #222222, #fff);
+        display: grid;
+        grid-template-columns: 1.4fr 0.9fr 0.9fr;
+        column-gap: 40px;
+        padding: 30px;
+        @media (max-width: 720px) {
+            display: grid;
+            grid-template-rows: 1.4fr 0.8fr 0.8fr;
+            grid-template-columns: 1fr;
+        }
+        h3 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+        .quicklinks {
+            a {
+                color: #fff;
+                display: flex;
+                flex-direction: column;
+                margin: 5px;
+            }
+            div a {
+                display: inline;
+                img {
+                    display: inline;
+                    filter: invert(1);
+                    height: 25px;
+                    margin: 5px;
+                }
+            }
+        }
+        .contactwithus p {
+            line-height: 40px;
+        }
+    }
+    // quick end
+
+    /* footer */
+    .footer {
+        @include w-h-bg-color(100%, 50px, #101010, #fff);
+        text-align: center;
+        padding: 10px;
+    }
+    /* footer end */
+}

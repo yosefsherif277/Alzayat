@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/Computec/Downloads/%D9%85%D9%88%D8%A7%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D9%8A%D8%A9/%D9%85%D8%B4%D8%A7%D8%B1%D9%8A%D8%B9%20%D9%83%D8%A8%D9%8A%D8%B1%D8%A9/Alzayat/frontend/src/app/layout.js"],"sourcesContent":["export default function RootLayout({ children }) {\n  return (\n    <html>\n      <body>\n        {children}\n      </body>\n    </html>\n  )\n}"],"names":[],"mappings":";;;;;AAAe,SAAS,WAAW,EAAE,QAAQ,EAAE;IAC7C,qBACE,8OAAC;kBACC,cAAA,8OAAC;sBACE;;;;;;;;;;;AAIT"}},
+    {"offset": {"line": 27, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 38, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/Computec/Downloads/%D9%85%D9%88%D8%A7%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D9%8A%D8%A9/%D9%85%D8%B4%D8%A7%D8%B1%D9%8A%D8%B9%20%D9%83%D8%A8%D9%8A%D8%B1%D8%A9/Alzayat/frontend/node_modules/next/src/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.ts"],"sourcesContent":["module.exports = require('../../module.compiled').vendored[\n  'react-rsc'\n].ReactJsxDevRuntime\n"],"names":["module","exports","require","vendored","ReactJsxDevRuntime"],"mappings":";AAAAA,OAAOC,OAAO,GAAGC,QAAQ,0HAAyBC,QAAQ,CACxD,YACD,CAACC,kBAAkB","ignoreList":[0]}},
+    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
