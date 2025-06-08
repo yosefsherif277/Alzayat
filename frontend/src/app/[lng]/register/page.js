@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from 'next/link';
 import { useTranslation } from "react-i18next";
 import { useAuthStore } from "../../store/useAuthStore";
 
-export default function RegisterPage() {
+export default function RegisterPage({ params: { lng } }) {
   const { t } = useTranslation("common");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { register, isRegistering } = useAuthStore();
+  const { register, isRegistering, error } = useAuthStore(); // Added error
   const router = useRouter();
 
   const handleRegister = async (e) => {
@@ -59,11 +60,11 @@ export default function RegisterPage() {
             />
           </div>
           <button type="submit" className="btn-register">
-            {t.register}
+            {isRegistering ? t.registering : t.register}
           </button>
         </form>
         <p className="login-link">
-          {t.haveAccount} <a href="/login">{t.loginHere}</a>
+          {t.haveAccount} <Link href={`/${lng}/login`}>{t.loginHere}</Link>
         </p>
       </div>
     </div>
