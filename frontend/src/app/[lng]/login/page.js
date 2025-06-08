@@ -2,20 +2,21 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from 'next/link';
 import { useTranslation } from "react-i18next";
 import { useAuthStore } from "../../store/useAuthStore";
 
-export default function LoginPage() {
+export default function LoginPage({ params: { lng } }) {
   const { t } = useTranslation("common");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, isLoggingIn } = useAuthStore();
+  const { login, isLoggingIn, error } = useAuthStore(); // Added error here
   const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     await login({ email, password });
-    router.push("/");
+    router.push(`/${lng}/`); // Added lng here
   };
 
   return (
@@ -51,7 +52,7 @@ export default function LoginPage() {
           </button>
         </form>
         <p className="register-link">
-          {t.noAccount} <a href="/register">{t.registerHere}</a>
+          {t.noAccount} <Link href={`/${lng}/register`}>{t.registerHere}</Link>
         </p>
       </div>
     </div>

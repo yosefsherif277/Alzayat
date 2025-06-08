@@ -4,6 +4,7 @@
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import { useAuthStore } from '../store/useAuthStore'
+import { useState } from 'react';
 
 export default function Header({ lng }) {
   const { t, i18n } = useTranslation('common')
@@ -34,23 +35,23 @@ export default function Header({ lng }) {
                 />
               </Link>
             </div>
-            <NavUl t={t} handleToggleLang={toggleLanguage} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+            <NavUl t={t} lng={lng} authUser={authUser} handleToggleLang={toggleLanguage} handleLogout={handleLogout} />
           </nav>
         </div>
       </header>
-      <BurgerNav t={t} handleToggleLang={toggleLanguage} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      <BurgerNav t={t} lng={lng} authUser={authUser} handleToggleLang={toggleLanguage} handleLogout={handleLogout} />
     </div>
   )
 }
 
-function NavUl({ t, handleToggleLang, isLoggedIn, handleLogout }) {
+function NavUl({ t, lng, authUser, handleToggleLang, handleLogout }) {
   return (
     <ul className="hidden md:flex items-center gap-6">
       <li><Link href="/#home" className="hover:text-primary">{t('home')}</Link></li>
       <li><Link href="/#about" className="hover:text-primary">{t('about')}</Link></li>
       <li><Link href="/#skills" className="hover:text-primary">{t('skills')}</Link></li>
       <li><Link href="/#contactus" className="hover:text-primary">{t('contactus')}</Link></li>
-      {authUser ? (
+      {!!authUser ? (
         <button onClick={handleLogout} className="btn btn-ghost">
           {t('logout')}
         </button>
@@ -71,7 +72,7 @@ function NavUl({ t, handleToggleLang, isLoggedIn, handleLogout }) {
   )
 }
 
-function BurgerNav({ t, handleToggleLang, isLoggedIn, handleLogout }) {
+function BurgerNav({ t, lng, authUser, handleToggleLang, handleLogout }) {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleIsOpen = () => {
@@ -112,17 +113,17 @@ function BurgerNav({ t, handleToggleLang, isLoggedIn, handleLogout }) {
                 <img src='/icons/users-solid.svg' alt="Contact Icon" className="w-4 h-4" /> {t('contactus')}
               </Link>
             </li>
-            {isLoggedIn ? (
+            {!!authUser ? (
               <li>
                 <button onClick={handleLogout} className="btn btn-ghost w-full justify-start">{t('logout')}</button>
               </li>
             ) : (
               <>
                 <li>
-                  <Link href="/login" className="btn btn-ghost w-full justify-start">{t('login')}</Link>
+                  <Link href={`/${lng}/login`} className="btn btn-ghost w-full justify-start">{t('login')}</Link>
                 </li>
                 <li>
-                  <Link href="/register" className="btn btn-primary w-full justify-start">{t('register')}</Link>
+                  <Link href={`/${lng}/register`} className="btn btn-primary w-full justify-start">{t('register')}</Link>
                 </li>
               </>
             )}
