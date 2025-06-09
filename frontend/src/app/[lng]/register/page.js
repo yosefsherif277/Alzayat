@@ -11,7 +11,7 @@ export default function RegisterPage({ params: { lng } }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { register, isRegistering, error } = useAuthStore(); // Added error
+  const { register, isRegistering, error } = useAuthStore();
   const router = useRouter();
 
   const handleRegister = async (e) => {
@@ -21,13 +21,15 @@ export default function RegisterPage({ params: { lng } }) {
   };
 
   return (
-    <div className="register-container">
-      <div className="register-box">
-        <h1>{t.register}</h1>
-        {error && <p className="error">{error}</p>}
+    <div className="mt-20 flex justify-center items-center min-h-screen bg-gray-100 p-5">
+      <div className="card bg-base-100 shadow-xl w-full max-w-md text-center p-8">
+        <h1 className="mb-6 text-primary text-2xl font-bold">{t.register}</h1>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleRegister}>
-          <div className="form-group">
-            <label htmlFor="name">{t.name}</label>
+          <div className="form-control mb-4 text-left">
+            <label className="label" htmlFor="name">
+              <span className="label-text text-primary">{t.name}</span>
+            </label>
             <input
               type="text"
               id="name"
@@ -35,10 +37,13 @@ export default function RegisterPage({ params: { lng } }) {
               onChange={(e) => setName(e.target.value)}
               placeholder={t.name}
               required
+              className="input input-bordered w-full text-base"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="email">{t.email}</label>
+          <div className="form-control mb-4 text-left">
+            <label className="label" htmlFor="email">
+              <span className="label-text text-primary">{t.email}</span>
+            </label>
             <input
               type="email"
               id="email"
@@ -46,10 +51,13 @@ export default function RegisterPage({ params: { lng } }) {
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t.email}
               required
+              className="input input-bordered w-full text-base"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="password">{t.password}</label>
+          <div className="form-control mb-4 text-left">
+            <label className="label" htmlFor="password">
+              <span className="label-text text-primary">{t.password}</span>
+            </label>
             <input
               type="password"
               id="password"
@@ -57,14 +65,18 @@ export default function RegisterPage({ params: { lng } }) {
               onChange={(e) => setPassword(e.target.value)}
               placeholder={t.password}
               required
+              className="input input-bordered w-full text-base"
             />
           </div>
-          <button type="submit" className="btn-register">
+          <button type="submit" className="btn btn-primary w-full h-12 text-base font-semibold mt-4">
             {isRegistering ? t.registering : t.register}
           </button>
         </form>
-        <p className="login-link">
-          {t.haveAccount} <Link href={`/${lng}/login`}>{t.loginHere}</Link>
+        <p className="mt-6 text-primary">
+          {t.haveAccount}{" "}
+          <Link href={`/${lng}/login`} className="text-secondary font-semibold no-underline hover:underline">
+            {t.loginHere}
+          </Link>
         </p>
       </div>
     </div>

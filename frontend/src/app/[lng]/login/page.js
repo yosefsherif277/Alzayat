@@ -10,23 +10,25 @@ export default function LoginPage({ params: { lng } }) {
   const { t } = useTranslation("common");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, isLoggingIn, error } = useAuthStore(); // Added error here
+  const { login, isLoggingIn, error } = useAuthStore();
   const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     await login({ email, password });
-    router.push(`/${lng}/`); // Added lng here
+    router.push(`/${lng}/`);
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <h1>{t.login}</h1>
-        {error && <p className="error">{error}</p>}
+    <div className="mt-20 flex justify-center items-center min-h-screen bg-gray-100 p-5">
+      <div className="card bg-base-100 shadow-xl w-full max-w-md text-center p-8">
+        <h1 className="mb-6 text-primary text-2xl font-bold">{t.login}</h1>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label htmlFor="email">{t.email}</label>
+          <div className="form-control mb-4 text-left">
+            <label className="label" htmlFor="email">
+              <span className="label-text text-primary">{t.email}</span>
+            </label>
             <input
               type="email"
               id="email"
@@ -34,10 +36,13 @@ export default function LoginPage({ params: { lng } }) {
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t.email}
               required
+              className="input input-bordered w-full text-base"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="password">{t.password}</label>
+          <div className="form-control mb-4 text-left">
+            <label className="label" htmlFor="password">
+              <span className="label-text text-primary">{t.password}</span>
+            </label>
             <input
               type="password"
               id="password"
@@ -45,14 +50,18 @@ export default function LoginPage({ params: { lng } }) {
               onChange={(e) => setPassword(e.target.value)}
               placeholder={t.password}
               required
+              className="input input-bordered w-full text-base"
             />
           </div>
-          <button type="submit" className="btn-login">
+          <button type="submit" className="btn btn-primary w-full h-12 text-base font-semibold mt-4">
             {t.login}
           </button>
         </form>
-        <p className="register-link">
-          {t.noAccount} <Link href={`/${lng}/register`}>{t.registerHere}</Link>
+        <p className="mt-6 text-primary">
+          {t.noAccount}{" "}
+          <Link href={`/${lng}/register`} className="text-secondary font-semibold no-underline hover:underline">
+            {t.registerHere}
+          </Link>
         </p>
       </div>
     </div>

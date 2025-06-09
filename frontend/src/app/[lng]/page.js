@@ -79,13 +79,6 @@ export default function HomePage() {
   }, [currentIndex, isPaused]);
 
   useEffect(() => {
-    if (sliderRef.current) {
-      const xValue = -200 * currentIndex;
-      sliderRef.current.style.transform = `translateX(calc(50% - 140px + ${xValue}px))`;
-    }
-  }, [currentIndex]);
-
-  useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 600) {
         setShowArrow(true);
@@ -106,9 +99,10 @@ export default function HomePage() {
       {showArrow && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg z-50"
+          className="fixed bottom-8 right-8 bg-primary text-primary-content w-12 h-12 p-3 rounded-full shadow-lg z-50 flex items-center justify-center hover:bg-primary-focus transition-colors"
         >
-          ↑
+          {/* Using a simple text arrow for now, ideally replace with an SVG icon */}
+          <span className="text-xl font-bold">↑</span>
         </button>
       )}
 
