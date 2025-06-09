@@ -4,14 +4,8 @@ import bcrypt from "bcryptjs";
 import express from "express";
 import cors from "cors";
 import cloudinary from "../lib/cloudinary.js";
-import nodemailer from "nodemailer";
 
-const app = express();
-
-app.use(express.json());
-app.use(cors());
-
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
   const { fullName, email, password } = req.body;
   try {
     if (!fullName || !email || !password) {
@@ -47,10 +41,11 @@ export const register = async (req, res) => {
       res.status(500).json({ message: "Server Error" });
     }
   } catch (err) {
-    console.log(err.message);
+    console.error(`Error in register: ${err.message}`, err.stack);
+    next(err);
   }
 };
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({ message: "Please fill in all fields" });
@@ -72,21 +67,21 @@ export const login = async (req, res) => {
       profilePic: user.profilePic,
     });
   } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({ message: "Server Error" });
+    console.error(`Error in login: ${error.message}`, error.stack);
+    next(error);
   }
 };
-export const logout = (req, res) => {
+export const logout = (req, res, next) => {
   try {
     res.clearCookie("jwt");
     return res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({ message: "Server Error" });
+    console.error(`Error in logout: ${error.message}`, error.stack);
+    next(error);
   }
 };
 
-export const updateProfile = async (req, res) => {
+export const updateProfile = async (req, res, next) => {
   try {
     const { profilePic } = req.body;
     const user = req.user._id;
@@ -102,49 +97,17 @@ export const updateProfile = async (req, res) => {
     );
     return res.status(200).json(updatedUser);
   } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({ message: "Server Error" });
+    console.error(`Error in updateProfile: ${error.message}`, error.stack);
+    next(error);
   }
 };
 
-export const checkAuth = (req, res) => {
+export const checkAuth = (req, res, next) => {
     try {
         res.status(200).json(req.user);
         console.log(req.user);
     } catch (error) {
-        console.log(error.message);
-        return res.status(500).json({ message: "Server Error" });
+        console.error(`Error in checkAuth: ${error.message}`, error.stack);
+        next(error);
     }
-}
-
-export default async function handler(req, res) {
-  if (req.method === "POST") {
-    const { name, email, message } = req.body;
-
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    // خيارات البريد الإلكتروني
-    const mailOptions = {
-      from: process.env.EMAIL_USER, // ايميل المرسل
-      to: "yasherif92@gmail.com", // ايميل المستقبل
-      subject: "New Contact Form Submission", // عنوان البريد
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`, // نص البريد
-    };
-
-    try {
-      await transporter.sendMail(mailOptions);
-      res.status(200).json({ message: "Message sent successfully!" });
-    } catch (error) {
-      console.error("Error sending email:", error);
-      res.status(500).json({ message: "Failed to send message" });
-    }
-  } else {
-    res.status(405).json({ message: "Method not allowed" });
-  }
 }

@@ -58,17 +58,21 @@ export default function HomePage() {
   };
 
   const moveRight = () => {
+    if (slidesRef.current.length === 0) return; // Guard clause
     const nextIndex = (currentIndex + 1) % slidesRef.current.length;
     setCurrentIndex(nextIndex);
   };
 
   const moveLeft = () => {
+    if (slidesRef.current.length === 0) return; // Guard clause
     const prevIndex =
       (currentIndex - 1 + slidesRef.current.length) % slidesRef.current.length;
     setCurrentIndex(prevIndex);
   };
 
   useEffect(() => {
+    if (slidesRef.current.length === 0) return; // Don't start interval if no slides
+
     const interval = setInterval(() => {
       if (!isPaused) {
         moveRight();
@@ -76,7 +80,7 @@ export default function HomePage() {
     }, 2000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, isPaused]);
+  }, [currentIndex, isPaused, slidesRef.current.length]); // Add slidesRef.current.length to deps
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,7 +106,7 @@ export default function HomePage() {
           className="fixed bottom-8 right-8 bg-primary text-primary-content w-12 h-12 p-3 rounded-full shadow-lg z-50 flex items-center justify-center hover:bg-primary-focus transition-colors"
         >
           {/* Using a simple text arrow for now, ideally replace with an SVG icon */}
-          <span className="text-xl font-bold">↑</span>
+          <span className="text-xl font-bold">{t("scrollToTop")}</span>
         </button>
       )}
 
@@ -119,7 +123,7 @@ export default function HomePage() {
           </h1>
           {authUser && (
             <div className="absolute top-4 right-4 bg-base-100 p-2 rounded-lg">
-              Welcome, {authUser.name}
+              {t("welcomeUser", { name: authUser.name })}
             </div>
           )}
           <Link href="#about" className="btn btn-primary text-lg">
@@ -145,7 +149,7 @@ export default function HomePage() {
                 <a href="https://facebook.com" target="_blank">
                   <img
                     src="/icons/facebook-brands.svg"
-                    alt="Facebook"
+                    alt={t("facebookAlt")}
                     className="w-6 h-6"
                   />
                 </a>
@@ -155,7 +159,7 @@ export default function HomePage() {
                 <a href="https://maps.app.goo.gl" target="_blank">
                   <img
                     src="/icons/location-dot-solid.svg"
-                    alt="Location"
+                    alt={t("locationAlt")}
                     className="w-6 h-6"
                   />
                 </a>
@@ -178,10 +182,14 @@ export default function HomePage() {
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {[...Array(12)].map((_, i) => (
-                <div key={i} className="w-full flex-shrink-0 px-2">
+                <div
+                  key={i}
+                  className="w-full flex-shrink-0 px-2"
+                  ref={el => slidesRef.current[i] = el} // Add individual slide refs here
+                >
                   <img
                     src={`/imgs/skills/${i + 1}.jpg`}
-                    alt={`Skill ${i + 1}`}
+                    alt={t("skillImageAlt", { number: i + 1 })}
                     className="w-full h-64 object-cover rounded-lg"
                   />
                 </div>
@@ -190,13 +198,13 @@ export default function HomePage() {
           </div>
           <div className="flex justify-center gap-4">
             <button onClick={moveLeft} className="btn btn-circle">
-              ←
+              {t("sliderLeftArrow")}
             </button>
             <button onClick={togglePause} className="btn btn-circle">
-              {isPaused ? "▶" : "⏸"}
+              {isPaused ? t("sliderPlayIcon") : t("sliderPauseIcon")}
             </button>
             <button onClick={moveRight} className="btn btn-circle">
-              →
+              {t("sliderRightArrow")}
             </button>
           </div>
         </section>
@@ -210,7 +218,7 @@ export default function HomePage() {
             <div>
               <img
                 src="/imgs/contact_us.png"
-                alt="Contact us"
+                alt={t("contactTitle")}
                 className="w-full rounded-lg"
               />
             </div>
