@@ -133,7 +133,7 @@ function BurgerNav({ t, lng, authUser, handleToggleLang, handleLogout }) {
             </div>
           </ul>
         </div>
-      )}
+      }
     </div>
   )
 }

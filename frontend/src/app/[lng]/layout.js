@@ -1,4 +1,4 @@
-import { languages } from './i18n/index'
+import i18n from './i18n/index'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import './globals.css'
@@ -14,9 +14,6 @@ export const metadata = {
     icon: '/imgs/logo.ico',
   },
 };
-export async function generateStaticParams() {
-  return languages.map((lng) => ({ lng }))
-}
 
 export default function RootLayout({ children, params: { lng } }) {
   return (
