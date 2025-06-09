@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import connectDB from './config/db.js';
-import authRoutes from './routes/authRoutes.js';
+import connectDB from './src/lib/db.js';
+import authRoutes from './src/routes/auth.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
@@ -19,6 +19,20 @@ app.use(cookieParser()); // لتمكين تحليل الكوكيز
 app.use(express.json()); // لتمكين تحليل JSON في الطلبات
 
 app.use('/api/auth', authRoutes);
+
+// Global error handler - MUST be after all routes
+app.use((err, req, res, next) => {
+  console.error(err.stack); // Log error stack for debugging
+
+  const statusCode = err.status || 500;
+  const message = err.message || 'Internal Server Error';
+
+  res.status(statusCode).json({
+    message: message,
+    // Optionally, include stack in development
+    // stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 

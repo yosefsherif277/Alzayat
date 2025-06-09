@@ -40,5 +40,14 @@
     "logoutConfirm": "Are you sure you want to log out?",
     "allFieldsRequired": "All fields are required",
     "messageSentSuccess": "Message sent successfully!",
-    "messageSentError": "Failed to send message"
+    "messageSentError": "Failed to send message",
+    "scrollToTop": "↑",
+    "welcomeUser": "Welcome, {{name}}",
+    "skillImageAlt": "Skill {{number}}",
+    "sliderLeftArrow": "←",
+    "sliderPlayIcon": "▶",
+    "sliderPauseIcon": "⏸",
+    "sliderRightArrow": "→",
+    "facebookAlt": "Facebook",
+    "locationAlt": "Location"
 }

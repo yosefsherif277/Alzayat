@@ -40,5 +40,14 @@
     "logoutConfirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     "allFieldsRequired": "جميع الحقول مطلوبة",
     "messageSentSuccess": "تم إرسال الرسالة بنجاح!",
-    "messageSentError": "فشل إرسال الرسالة"
+    "messageSentError": "فشل إرسال الرسالة",
+    "scrollToTop": "↑",
+    "welcomeUser": "مرحباً، {{name}}",
+    "skillImageAlt": "مهارة {{number}}",
+    "sliderLeftArrow": "←",
+    "sliderPlayIcon": "▶",
+    "sliderPauseIcon": "⏸",
+    "sliderRightArrow": "→",
+    "facebookAlt": "فيسبوك",
+    "locationAlt": "الموقع"
   }
