@@ -40,9 +40,9 @@ export default function Footer() {
         <div className="border-t border-base-300 mt-8 pt-4 text-center">
           <h5>
             © 2025 | {t('allRightsReserved')} | {t('createdBy')}:{' '}
-            <b title={`${t('phone')}: 01067370955, ${t('email')}: yasherif92@gmail.com`}>
-              <u><i>{`"${t('programmer')}"`}</i></u>
-            </b>
+            <span className="font-bold underline italic" title={`${t('phone')}: 01067370955, ${t('email')}: yasherif92@gmail.com`}>
+              {`"${t('programmer')}"`}
+            </span>
           </h5>
         </div>
       </div>
