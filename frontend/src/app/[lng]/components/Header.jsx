@@ -1,6 +1,4 @@
-
-'use client'
-
+"use client";
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import { useAuthStore } from '../store/useAuthStore'
